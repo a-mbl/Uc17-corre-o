@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Chapter.WebApi",
+    "\\Chapter.WebApi\\Contexts",
+    "\\Chapter.WebApi\\Controllers",
+    "\\Chapter.WebApi\\Interfaces",
+    "\\Chapter.WebApi\\Models",
+    "\\Chapter.WebApi\\Repositories"
+  ],
+  "SelectedNode": "\\Chapter.WebApi\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -7,17 +7,52 @@ namespace Chapter.WebApi.Repositories
 {
     public class LivroRepository
     {
-        // retorna a lista de livros
+        private readonly Sqlcontext _context;
+        public LivroRepository(Sqlcontext context)
+        {
+            _context = context;
+
+        }
+
         public List<Livro> Listar()
         {
-            var livros = new List<Livro>() 
+
+            return _context.Livros.ToList();
+        }
+
+        public Livro BuscarPorId(int id)
+        {
+            return _context.Livros.Find(id);
+        }
+
+        public void Cadastro(Livro l)
+        {
+            _context.Livros.Add(l);
+            _context.SaveChanges();
+        }
+
+
+        public void Deletar(int id)
+        {
+            Livro l = _context.Livros.Find(id);
+            _context.Livros.Remove(l);
+            _context.SaveChanges();
+        }
+
+        public void Alterar(int id, Livro l)
+        {
+            Livro livroBuscado = _context.Livros.Find(id);
+
+            if (livroBuscado != null)
             {
-                new Livro() { Id = 1, Disponivel = true, QuantidadePaginas = 120, Titulo = "O poder do agora" },
-                new Livro() { Id = 2, Disponivel = false, QuantidadePaginas = 220, Titulo = "Do mil ao milhão" },
-                new Livro() { Id = 3, Disponivel = true, QuantidadePaginas = 220, Titulo = "Breves respostas para grandes questões" },
-                new Livro() { Id = 4, Disponivel = false, QuantidadePaginas = 220, Titulo = "Do mil ao milhão" },
-            };
-            return livros;
+                livroBuscado.Titulo = l.Titulo;
+                livroBuscado.QuantidadePaginas = l.QuantidadePaginas;
+                livroBuscado.Disponivel = l.Disponivel;
+
+                _context.Livros.Update(livroBuscado);
+                _context.SaveChanges();
+            }
+
         }
 
     }
